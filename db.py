@@ -23,9 +23,24 @@ class Database:
             INSERT INTO measurements
             (station_id, topic_id, timestamp, value)
             VALUES (%s, %s, %s, %s)
+            ON CONFLICT (station_id, topic_id, timestamp)
+            DO UPDATE SET value = EXCLUDED.value
             """,
             (station_id, topic_id, timestamp, value),
         )
-        self.conn.commit()
 
+    def insert_weather_observation(self, station_id, topic_id, timestamp, value):
+        self.cur.execute(
+            """
+            INSERT INTO weather_observations
+            (station_id, topic_id, timestamp, value)
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (station_id, topic_id, timestamp)
+            DO UPDATE SET value = EXCLUDED.value
+            """,
+            (station_id, topic_id, timestamp, value),
+        )
+
+    def commit(self):
+        self.conn.commit()
 

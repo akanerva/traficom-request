@@ -99,6 +99,7 @@ def parse_message(msg):
         dt,
         data["value"],
     )
+    db.commit()
 
 
 logging.basicConfig(level=logging.DEBUG)
