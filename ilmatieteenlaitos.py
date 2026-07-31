@@ -89,8 +89,14 @@ def save_data(obs, fmisid, station_type):
             #     float(value),
             # )
 
-            db.insert_weather_observation(fmisid, topic_id, timestamp, float(value))
-        db.commit()
+            db.insert_measurement(
+                fmisid,
+                topic_id,
+                timestamp,
+                float(value),
+            )
+
+    db.commit()
 
 def main():
 

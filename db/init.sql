@@ -17,23 +17,6 @@ CREATE TABLE measurements (
     PRIMARY KEY (station_id, topic_id, timestamp)
 );
 
-CREATE TABLE weather_observations (
-    station_id          INTEGER NOT NULL REFERENCES stations(id),
-    observation_time    TIMESTAMPTZ NOT NULL,
-
-    temperature         REAL,
-    humidity            REAL,
-    pressure            REAL,
-    wind_speed          REAL,
-    wind_direction      REAL,
-    gust                REAL,
-    dewpoint            REAL,
-    precipitation       REAL,
-    water_temperature   REAL,
-
-    PRIMARY KEY (station_id, observation_time)
-);
-
 INSERT INTO stations (id, name) VALUES
 (101794, 'Oulu Vihreäsaari satama'),
 (101786, 'Oulu lentoasema'),
@@ -74,8 +57,3 @@ ON measurements (station_id, topic_id, timestamp);
 CREATE INDEX idx_measurements_station_topic_value
 ON measurements (station_id, topic_id, value);
 
-CREATE INDEX idx_weather_time
-ON weather_observations (observation_time);
-
-CREATE INDEX idx_weather_station_time
-ON weather_observations (station_id, observation_time);
