@@ -6,7 +6,7 @@ class Database:
         while True:
             try:
                 self.conn = psycopg.connect(
-                    host="postgres",
+                    host="postgres-v2",
                     dbname="weather",
                     user="weather",
                     password="mypassword",
