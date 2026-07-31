@@ -20,8 +20,5 @@ COPY . .
 # Create logs directory
 RUN mkdir -p /app/logs
 
-# Declare it as a volume
-VOLUME ["/app/logs"]
-
 # Run the script
 CMD ["python", "mqtt.py"]
